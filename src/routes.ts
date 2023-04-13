@@ -1,14 +1,18 @@
 import { Router } from "express"
-
-import { getCustomRepository } from "typeorm"
-import { SettingsRepository } from "./repositories/SettingsRepository"
+import { SettingsController } from "./controller/SettingsController";
 
 const routes = Router();
 
-routes.post("/settings", (request, response) => {
-    const settingsRepository = getCustomRepository(SettingsRepository);
-    return response.json({ message: "Hello World" })
-})
+const settingsController = new SettingsController();
+
+/**
+ * tipos de parametros
+ * Routes Params => parametros de rotas
+ * Query Params => filtros e buscas
+ * Body Params => {
+*/
+
+routes.post("/settings", settingsController.create);
 
 
 export { routes }
